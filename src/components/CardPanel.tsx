@@ -43,7 +43,7 @@ export default function CardPanel() {
   return (
     <div>
       <div className="px-[24px] text-3xl m-[24px] bg-lime-600/80 text-white inline-block rounded-[16px]">
-        Participating hospitals{" "}
+        Participating hospitals
       </div>
 
       <div className="flex flex-row flex-wrap justify-around content-around m-[24px]">
@@ -70,21 +70,22 @@ export default function CardPanel() {
         />
       </div>
 
-      <div className="w-full text-xl font-medium mt-[16px]">
+      <div className=" text-3xl font-medium mt-[16px] px-[32px] mx-[24px] bg-lime-600/80 text-white rounded-[16px] inline-block ">
         Hospital List with Ratings: {compareList.size}
       </div>
-
+      <div className="px-[32px] py-[8px] bg-lime-400/60 rounded-[16px] flex flex-col w-[50%] mx-[24px] my-[16px]">
+        {Array.from(compareList.entries()).map(([hos, rating]) => (
+          <div
+            key={hos}
+            data-testid={hos}
+            className="block font-medium text-xl "
+            onClick={() => dispatchCompare({ type: "remove", hosName: hos })}
+          >
+            {hos}: {rating}
+          </div>
+        ))}
+      </div>
       {/* Map through compareList and display hospital name with its rating */}
-      {Array.from(compareList.entries()).map(([hos, rating]) => (
-        <div
-          key={hos}
-          data-testid={hos}
-          className="block w-[100%]"
-          onClick={() => dispatchCompare({ type: "remove", hosName: hos })}
-        >
-          {hos}: {rating}
-        </div>
-      ))}
     </div>
   );
 }
